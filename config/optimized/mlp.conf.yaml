@@ -1,0 +1,7 @@
+model_name: "MLP"
+num_layers: 2
+hidden_size: 64
+dropout_prob: 0.8
+
+learning_rate: 0.005
+weight_decay: 0.01

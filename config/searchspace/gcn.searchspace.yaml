@@ -1,0 +1,42 @@
+# Parameter search spaces.
+# Each search space must be named like a parameter in train.conf.yaml or a respective <model_name>.conf.yaml and have
+# the following attributes:
+#     - format    One of "range" and "values". If "range", random sampling will select from a continuous range that is
+#                 specified by the "min" and "max" fields. If "values", parameter settings will be randomly sampled
+#                 from the (discrete) list given in the "value" field.
+#     - min       Only if format == "range". Minimum value (included) of the sample range.
+#     - max       Only if format == "range". Maximum value (included) of the sample range.
+#     - log_scale Only if format == "range". If False, samples are drawn uniformly on a linear scale, if True, samples
+#                 are drawn uniformly on a logarithmic scale.
+#     - values    Only if format == "values". List of values to sample from.
+#                logarithmic scale.
+#     - dtype     One of ["int", "float"]. The datatype of the samples.
+hidden_size:
+    format: "values"
+    values:
+        - 8
+        - 16
+        - 32
+        - 64
+    dtype: "int"
+
+learning_rate:
+    format: "range"
+    min: !!float 1e-3
+    max: !!float 1e-2
+    log_scale: true
+    dtype: "float"
+
+dropout_prob:
+    format: "range"
+    min: 0.2
+    max: 0.8
+    log_scale: false
+    dtype: "float"
+
+weight_decay:
+    format: "range"
+    min: !!float 1e-4
+    max: !!float 1e-1
+    log_scale: true
+    dtype: "float"

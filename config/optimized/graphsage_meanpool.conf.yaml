@@ -1,0 +1,9 @@
+model_name: "GraphSAGE_meanpool"
+aggregator: "meanpool"
+num_layers: 2
+hidden_size: 32
+agg_transform_size: 8  # only needed for maxpool and meanpool aggregator
+dropout_prob: 0.2
+
+learning_rate: 0.001
+weight_decay: 0.01

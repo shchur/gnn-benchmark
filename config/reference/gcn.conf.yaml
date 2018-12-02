@@ -1,0 +1,7 @@
+model_name: "GCN"
+num_layers: 2
+hidden_size: 16
+dropout_prob: 0.5
+
+learning_rate: 0.01
+weight_decay: !!float 5e-4

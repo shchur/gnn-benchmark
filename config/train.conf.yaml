@@ -1,0 +1,83 @@
+# This file provides the default values for all parameters of the training procedure.
+# You can OVERRIDE these defaults by specifying values in respective model config files (such as gcn.conf.yaml).
+
+# ---
+# Training procedure parameters.
+
+# Maximum number of epochs to train for. Should be large enough for early stopping to take effect.
+num_epochs: 100000
+
+# The early stopping criterion to use. Must be one of
+#     - gcn        Early stopping criterion used in [1]. Early stopping if validation loss is larger than the mean of
+#                  the validation losses of the last <patience> epochs.
+#     - gat        Early stopping criterion used in [2]. Early stopping if neither validation loss nor validation
+#                  accuracy improve, reset of variables after stopping.
+#     - gnnbench   Early stopping criterion used in our paper. Early stopping only by improvement of validation loss,
+#                  reset of variables after stopping.
+# Set to null to disable early stopping.
+#
+# [1] Kipf & Welling (2016). Semi-supervised classification with graph convolutional networks.
+# [2] Velickovic et al. (2017). Graph attention networks.
+early_stopping_criterion: "gnnbench"
+
+# The tolerance (or patience) of the early stopping criterion. To correspond to the criterion in [1] this must be set to
+# 10, to correspond to the criterion in [2] this must be set to 100.
+early_stopping_tolerance: 50
+
+# Always set to 0.0. Only needed for LabelProp where it is updated in corresponding config files.
+# This "dummy parameter" is needed here in order for the parameter to be defined in Sacred before the model is
+# instantiated. Only needed for model-specific training parameters, not for model parameters.
+improvement_tolerance: 0.0
+
+# Initial learning rate.
+learning_rate: 0.01
+
+# Strength of the L2 regularization.
+weight_decay: !!float 5e-4
+
+# Only needed for MoNet. Number of consecutive steps to either optimize filter weights or kernel weights.
+alternating_optimization_interval: 12
+
+# Only needed for MoNet. Multiplicative factor to decay learning rate after each entry of lr_decay_steps. Set to 0.0 to
+# disable learning rate decay.
+lr_decay_factor: 0.0
+
+# Only needed for MoNet. List of steps after which to decay the learning rate. Set to empty list or null to disable
+# learning rate decay.
+lr_decay_steps: null
+
+
+# ---
+# Dataset parameters
+
+# Number of samples (i.e. nodes) in the train/val/test sets.
+# For each of the [train, val, test] sets use one of
+#     - <set_name>_examples_per_class    Randomly sample this many examples per class. Total number of <set_name> samples
+#                                        is then num_classes * <set_name>_examples_per_class.
+#     - <set_name>_size                  Randomly samples this many examples in total.
+# If test_size and test_examples_per_class are both null, the remainder of the samples is used as test set.
+split:
+    train_examples_per_class: 20
+    val_examples_per_class: 30
+    test_size: null
+# For example, in the Planetoid paper the following configuration is used.
+#split:
+#    train_examples_per_class: 20
+#    val_size: 500
+#    test_size: 1000
+
+# Should the input graph be standardized?
+# Standardizing includes:
+#  - Making the graph undirected
+#  - Making the graph unweighted
+#  - Selecting the largest connected component (LCC)
+standardize_graph: true
+
+# Should the attribute matrix (X) be row-normalized s.t. each row has L2 norm equal to 1?
+normalize_features: false
+
+
+# ---
+# Logging parameters
+# The number of epochs after which to print a log message.
+report_interval: 10

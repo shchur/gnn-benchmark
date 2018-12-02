@@ -1,0 +1,12 @@
+model_name: "MoNet"
+num_layers: 2
+hidden_size: 32
+num_kernels: 2
+r: 2
+
+dropout_prob: 0.7
+
+alt_opt: false
+
+learning_rate: 0.003
+weight_decay: 0.05

@@ -1,0 +1,4 @@
+model_name: "LogRegr"
+
+learning_rate: 0.1
+weight_decay: 0.0005

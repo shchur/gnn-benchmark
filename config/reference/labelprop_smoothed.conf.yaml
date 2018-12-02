@@ -1,0 +1,9 @@
+model_name: "LabelProp_smoothed"
+prop_type: "smoothed"
+
+return_prob: 0.2  # only needed for LabelProp_smoothed
+
+# reset some config parameters from train.conf
+early_stopping_criterion: "gat_tol"  # reset to specifically crafted early stopping criterion
+improvement_tolerance: !!float 1e-3
+num_training_runs: 1  # there are no weights to initialize for LabelProp
