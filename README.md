@@ -14,13 +14,13 @@ This package was tested on Ubuntu 16.04 LTS with Python 3.6.6.
 
 ## Table of contents
 1. [Installation](#installation)
-2. [Running experiments](#running-experiments-with-`gnnbench`)
+2. [Running experiments](#running-experiments-with-gnnbench)
    1. [General structure](#general-structure)
     2. [Configuring experiments](#configuring-experiments)
     3. [Creating jobs](#creating-jobs)
     4. [Running jobs](#running-jobs)
     5. [Retrieving and aggregating results](#retrieving-and-aggregating-the-results)
-    6. [Cleaning up the database](#clearning-up-the-database)
+    6. [Cleaning up the database](#cleaning-up-the-database)
 3. [GNN models](#gnn-models)
 4. [Datasets](#datasets)
 5. [Extending the framework](#extending-the-framework)
